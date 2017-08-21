@@ -1,0 +1,21 @@
+//屏蔽外面的滚动条
+var getScrollbarWidth = function () {
+            var oP = document.createElement('p'),
+                styles = {
+                    width: '100px',
+                    height: '100px',
+                    overflowY: 'scroll'
+                }, i, scrollbarWidth;
+            for (i in styles) oP.style[i] = styles[i];
+            document.body.appendChild(oP);
+            scrollbarWidth = oP.offsetWidth - oP.clientWidth;
+            $(oP).remove();
+            return scrollbarWidth;
+        };
+        var scrollbarwidth = 0;
+        if (document.body.scrollHeight > document.body.clientHeight) {
+            scrollbarwidth = getScrollbarWidth();
+        }
+        $("body").css({ overflow: "hidden", padding: "0px " + scrollbarwidth + "px 0px 0px" });
+
+$("body").css({ overflow: "auto", padding: "0px" });//显示外面滚动条
